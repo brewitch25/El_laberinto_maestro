@@ -9,12 +9,29 @@
 using namespace std;             // Permite escribir de forma legible y facil de entender
 
 // Definimos las constantes para los elementos del laberinto
-const char MURO = '|';
-const char CAMINO = '.';
-const char ENTRADA = 'E';
 const char SALIDA = 'S';
+const char MURO = '|';
+const char ENTRADA = 'E';
+const char CAMINO = '.';
 const char RUTA = 'X';                          // Marca el camino resulto
 
+int main() 
+{
+    // Inicializamos y declaramos las variables
+    int ancho, alto;
+    
+    // Vamos a solicitar al usuario los siguientes valor (ancho y alto)
+    // Valor ancho (numero de filas)
+    cout <<"Ingrese el valor para el ancho del laberinto: "; cin >> ancho;
+    // Valor alto(numero de columnas)
+    cout <<"Ingrese el valor para el alto del laberinto: "; cin >> alto;
 
+    // Generamos el laberinto
+    vector<vector<char>>laberinto(alto, vector<char>(ancho, MURO));
+
+    cout <<"Laberinto creado de " << ancho << "x" << alto << endl;
+
+    return 0;
+}
 
 

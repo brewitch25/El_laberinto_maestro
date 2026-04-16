@@ -59,6 +59,45 @@ int main()
 void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz) 
 {
     //Definimos las 4 direcciones(arriba, abajo, izquierda, derecha)
-    
+    // Usamos estructura simples para reprensentar el movimiento en filas y columnas
+    int df[] = {-1, 1, 0, 0};
+    int dc[] = {0, 0, -1, 1};
+    int indices [] = {0, 1, 2, 3};
+
+    // Se selecciona un elemento al azar, recorriendo la lista (indices), de atras hacia adelante, por cada
+    // posicion, elige al azar un elemento que esté antes de ella y los intercambia.
+    for (int i = 3; i > 0; --i) 
+    {
+        int j = rand() % (i + 1);           // Elige un índice aleatorio entre 0 e i
+        int temp = indices[i];
+        indices[i] = indices[j];
+        indices[j] = temp;
+    }
+
+    // Se aplica el movimiento aleatorio
+    for (int i = 0; i < 4; ++i) 
+    {  // direccion_elegida -> indice que nos dice que direccion usar {0,1,2,3}
+        int direccion_elegida = indices[i];
+
+    // Calcula la nueva posicion, de 2 en 2 para mantener los MUROS
+    int nueva_fila = fila + (df[direccion_elegida] * 2);
+    int nueva_col = col + (dc[direccion_elegida] * 2);
+
+    if (es_posicion_valida(nueva_fila, nueva_col, alto, ancho) && matriz[nueva_fila][nueva_col] == MURO)
+    {
+        //Marcamos el camino, la celda intermedia y el destino
+        matriz[fila + df[direccion_elegida]][col + dc[direccion_elegida]] = CAMINO;
+        matriz[nueva_fila][nueva_col] = CAMINO;
+
+        // Usamos recursividad para seguir explorando desde la posicion actual
+        generar_camino_desde(nueva_fila, nueva_col, alto, ancho, matriz);
+    }
+    }
 }
+// Varifica que el personaje este dentro de los limites de la matriz 
+bool es_posicion_valida(int fila, int col, int alto, int ancho)
+{
+    return (fila >= 0 && fila < alto && col >= 0 && col < ancho);  
+}
+
 

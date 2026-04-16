@@ -48,3 +48,9 @@ FUNCION generar_camino_desde(fila, col, MATRIZ)
             generar_camino_desde(nueva_fila, nueva_col, MATRIZ)
     FIN PARA
 FIN FUNCION
+// Funcion auxilar es_posicion_valida, a utilizar en la funcion generar_camino_desde
+// verifica que los movimientos esten dentro de la matriz
+// -> Parametros que recibe: int (filas, columnas, alto y ancho)
+// -> Valor que devuelve: boolean (true o false)
+FUNCION es_posicion_valida(fila, columna, ancho, alto)
+    RETORNA True -> dentro de la matriz;    False -> Fuera de la matriz

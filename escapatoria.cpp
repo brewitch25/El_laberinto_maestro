@@ -1,11 +1,8 @@
 #include <iostream>              // Ayuda a que el programa pueda tener input y output
 #include <vector>                // Se usa para generar la matriz del laberinto
-#include <algorithm>             // Se usa para el procesamiento de datos, en este caso los datos del vector
-#include <stack>                 // Se usa para la generacion del laberinto (ya que va a ser hecho por el usuario)
-#include <queue>                 // Se usa para resolver el algoritmo BFS 
 #include <ctime>                 // Se usa para generar los numeros aleatorios
 #include <chrono>                // Para medir el tiempo de ejecucion
-#include <random>                // Para generar aleatoriedad en el laberinto
+#include <stdlib.h>              // Para generar aleatoriedad
 using namespace std;             // Permite escribir de forma legible y facil de entender
 
 // Definimos las constantes para los elementos del laberinto
@@ -26,10 +23,11 @@ int main()
     // Valor alto(numero de columnas)
     cout <<"Ingrese el valor para el alto del laberinto: "; cin >> alto;
 
-    // Generamos el laberinto
-    vector<vector<char>>laberinto(alto, vector<char>(ancho, MURO));
+    // Inicializo el laberinto
+    vector<vector<char>> matriz_laberinto = vector<vector<char>>(alto, vector<char>(ancho, MURO));
 
-    cout <<"Laberinto creado de " << ancho << "x" << alto << endl;
+    // Output de prueba de visualizacion de inicializacion de laberinto
+    //cout <<"Laberinto creado de " << ancho << "x" << alto << endl;
 
     return 0;
 }

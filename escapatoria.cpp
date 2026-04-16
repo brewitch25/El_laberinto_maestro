@@ -35,8 +35,30 @@ int main()
     // Inicializo el laberinto lleno de MUROS
     vector<vector<char>> matriz_laberinto = vector<vector<char>>(alto, vector<char>(ancho, MURO));
 
-    
+    // Definimos la entrada(esquina superior derecha)
+    matriz_laberinto[0][0] = ENTRADA;
+
+    // Definimos el inicio del algoritimo en la posicion (1,1)
+    generar_camino_desde(1, 1, alto, ancho, matriz_laberinto);
+
+    // Permite que el jugador pase de la entrada al resto del laberinto
+    matriz_laberinto[0][1] = CAMINO;
+    matriz_laberinto[1][1] = CAMINO;
+
+    // Definimos la salida, se crean los dos caminos para que la salida no se encuentren rodeadas
+    // paredes, hace que se pueda acceder a la salida
+    matriz_laberinto[alto - 1][ancho - 1] = SALIDA;
+    matriz_laberinto[alto - 2][ancho - 1] = CAMINO;
+    matriz_laberinto[alto - 2][ancho - 2] = CAMINO;
+
     return 0;
 }
 
+ // << === >> FUNCIONES A USAR EN EL MAIN << === >> //
+
+void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz) 
+{
+    //Definimos las 4 direcciones(arriba, abajo, izquierda, derecha)
+    
+}
 

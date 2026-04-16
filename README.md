@@ -2,19 +2,19 @@
 PSEUDOCODIGO DEL PROGRAMA
 INICIO DEL PROGRAMA
     // 1. Configuración
-    MOSTRAR "Ingrese el ancho del laberinto:"
+    MOSTRAR "Ingrese el ancho del laberinto:"       -
     LEER ancho
     MOSTRAR "Ingrese el alto del laberinto:"
     LEER alto
     
     CREAR matriz_laberinto[alto][ancho]
-    INICIALIZAR todas las celdas como MURO (#)
+    INICIALIZAR todas las celdas como MURO (|)
 
     // 2. Medición de tiempo (Inicio)
     tiempo_inicio = OBTENER_TIEMPO_ACTUAL()
 
     // 3. Generación
-    LLAMAR a GenerarLaberinto(matriz_laberinto, 1, 1)
+    LLAMAR a generar_camino_desde(1,1 matriz_laberinto)
     MARCAR Entrada 'E' y Salida 'S'
 
     // 4. Resolución
@@ -28,3 +28,23 @@ INICIO DEL PROGRAMA
     DIBUJAR_LABERINTO(matriz_laberinto con la ruta marcada '*')
     MOSTRAR "Tiempo de ejecución: " + (tiempo_fin - tiempo_inicio)
 FIN
+
+
+// Funcion para generar los caminos del laberinto
+// utilizando backtracking para asegurar que al menos
+// un camino conecte la entrada con la salida
+FUNCION generar_camino_desde(fila, col, MATRIZ)
+    // Obtener direcciones aleatorias (Norte, Sur, Este, Oeste)
+    LISTA direcciones = barajar_aleatoriamente([N, S, E, O])
+    
+    PARA CADA dir EN direcciones:
+        Calcular nueva_fila y nueva_col (saltando 2 espacios para dejar paredes)
+        
+        SI (nueva_fila y nueva_col están dentro del rango) Y (es una PARED):
+            Romper la pared entre (fila, col) y (nueva_fila, nueva_col)
+            Marcar (nueva_fila, nueva_col) como CAMINO
+            
+            // Recursión: seguir explorando desde la nueva posición
+            generar_camino_desde(nueva_fila, nueva_col, MATRIZ)
+    FIN PARA
+FIN FUNCION

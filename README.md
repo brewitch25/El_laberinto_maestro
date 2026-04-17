@@ -54,3 +54,13 @@ FIN FUNCION
 // -> Valor que devuelve: boolean (true o false)
 FUNCION es_posicion_valida(fila, columna, ancho, alto)
     RETORNA True -> dentro de la matriz;    False -> Fuera de la matriz
+
+// FUNCION QUE CAPTURA EL TIEMPO DE INICIO Y EL FINAL DE TIEMPO DE EJECUCION DE LA FUNCION
+// Que parametros recibe, la funcion "chrono::steady_clock::now(), de la libreria chrono.
+// Devuelve un numero, el tiempo en el que inicio a correr la ejecucion y el tiempo en el que finalizo la 
+// ejecucion de la funcion 
+auto tiempo(inicial, final) = chrono::steady_time::now()
+
+// TIEMPO TOTAL DE TIEMPO DE EJECICION DE LA FUNCION generar_laberinto_desde
+// Devuelve un numero, que es el tiempo total de ejecucion
+diferencia (resta) tiempo final - tiempo inicial

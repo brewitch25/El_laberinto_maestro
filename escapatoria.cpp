@@ -9,7 +9,7 @@ using namespace std;             // Permite escribir de forma legible y facil de
 const char SALIDA = 'S';
 const char MURO = '#';
 const char ENTRADA = 'E';
-const char CAMINO = ' ';
+const char CAMINO = '.';
 const char RUTA = 'X';                          // Marca el camino resulto
 
 // Indice de todas las funciones a usar en main
@@ -27,19 +27,28 @@ int main()
     cout <<"Ingrese el valor para el ancho del laberinto: "; cin >> ancho;
     // Solicitar al usuario valor alto(numero de columnas)
     cout <<"Ingrese el valor para el alto del laberinto: "; cin >> alto;
-
+    /*
     // Ajustamos los valores a impares para asegurar paredes entre los caminos
     if (ancho % 2 == 0) ancho++;            // Se suma 1
     if (alto % 2 == 0) alto++;              // Se suma 1
-
+    */
     // Inicializo el laberinto lleno de MUROS
     vector<vector<char>> matriz_laberinto = vector<vector<char>>(alto, vector<char>(ancho, MURO));
 
     // Definimos la entrada(esquina superior derecha)
     matriz_laberinto[0][0] = ENTRADA;
+    
+    // Registamos el tiempo antes de empezar - INICIO
+    auto tiempo_inicial = chrono::high_resolution_clock::now();
 
     // Definimos el inicio del algoritimo en la posicion (1,1)
     generar_camino_desde(1, 1, alto, ancho, matriz_laberinto);
+
+    // Registramos el tiempo al terminar la funcion - FINAL
+    auto tiempo_final = chrono::high_resolution_clock::now();
+
+    // Calculo de tiempo de ejecucion 
+    chrono::duration<double> tiempo_de_ejecucion = tiempo_inicial - tiempo_final;
 
     // Permite que el jugador pase de la entrada al resto del laberinto
     matriz_laberinto[0][1] = CAMINO;
@@ -50,6 +59,18 @@ int main()
     matriz_laberinto[alto - 1][ancho - 1] = SALIDA;
     matriz_laberinto[alto - 2][ancho - 1] = CAMINO;
     matriz_laberinto[alto - 2][ancho - 2] = CAMINO;
+
+    // Visualizacion de la matriz generada
+    cout <<"Laberinto Generado" << endl;
+    for (int i = 0; i < alto; ++i)      // 1er bucle, recorre cada fila
+    {
+        for (int j = 0; j < ancho; ++j)
+        { cout << matriz_laberinto[i][j] << " "; }
+        // Al terminar de imprimir una fila, pasamos a la siguiente linea
+        cout << endl;
+    }
+    // Mostramos el tiempo de ejecucion del laberinto
+    cout<<"La ejecucion tardo: "<< tiempo_de_ejecucion.count() <<"segundos"<<endl;
 
     return 0;
 }
@@ -83,11 +104,12 @@ void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<
     int nueva_fila = fila + (df[direccion_elegida] * 2);
     int nueva_col = col + (dc[direccion_elegida] * 2);
 
+
     if (es_posicion_valida(nueva_fila, nueva_col, alto, ancho) && matriz[nueva_fila][nueva_col] == MURO)
     {
         //Marcamos el camino, la celda intermedia y el destino
-        matriz[fila + df[direccion_elegida]][col + dc[direccion_elegida]] = CAMINO;
-        matriz[nueva_fila][nueva_col] = CAMINO;
+        matriz[fila + df[direccion_elegida]][col + dc[direccion_elegida]] = CAMINO;       //Celda intermedia
+        matriz[nueva_fila][nueva_col] = CAMINO;                                           // Celda destino
 
         // Usamos recursividad para seguir explorando desde la posicion actual
         generar_camino_desde(nueva_fila, nueva_col, alto, ancho, matriz);

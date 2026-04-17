@@ -48,7 +48,7 @@ int main()
     auto tiempo_final = chrono::high_resolution_clock::now();
 
     // Calculo de tiempo de ejecucion 
-    chrono::duration<double> tiempo_de_ejecucion = tiempo_inicial - tiempo_final;
+    chrono::duration<double> tiempo_de_ejecucion = tiempo_final - tiempo_inicial;
 
     // Permite que el jugador pase de la entrada al resto del laberinto
     matriz_laberinto[0][1] = CAMINO;

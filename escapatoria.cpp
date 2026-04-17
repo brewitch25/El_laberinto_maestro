@@ -39,13 +39,13 @@ int main()
     matriz_laberinto[0][0] = ENTRADA;
     
     // Registamos el tiempo antes de empezar - INICIO
-    auto tiempo_inicial = chrono::high_resolution_clock::now();
+    auto tiempo_inicial = chrono::steady_clock::now();
 
     // Definimos el inicio del algoritimo en la posicion (1,1)
     generar_camino_desde(1, 1, alto, ancho, matriz_laberinto);
 
     // Registramos el tiempo al terminar la funcion - FINAL
-    auto tiempo_final = chrono::high_resolution_clock::now();
+    auto tiempo_final = chrono::steady_clock::now();
 
     // Calculo de tiempo de ejecucion 
     chrono::duration<double> tiempo_de_ejecucion = tiempo_final - tiempo_inicial;

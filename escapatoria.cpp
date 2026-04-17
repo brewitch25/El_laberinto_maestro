@@ -27,11 +27,7 @@ int main()
     cout <<"Ingrese el valor para el ancho del laberinto: "; cin >> ancho;
     // Solicitar al usuario valor alto(numero de columnas)
     cout <<"Ingrese el valor para el alto del laberinto: "; cin >> alto;
-    /*
-    // Ajustamos los valores a impares para asegurar paredes entre los caminos
-    if (ancho % 2 == 0) ancho++;            // Se suma 1
-    if (alto % 2 == 0) alto++;              // Se suma 1
-    */
+
     // Inicializo el laberinto lleno de MUROS
     vector<vector<char>> matriz_laberinto = vector<vector<char>>(alto, vector<char>(ancho, MURO));
 

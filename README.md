@@ -64,3 +64,32 @@ auto tiempo(inicial, final) = chrono::steady_time::now()
 // TIEMPO TOTAL DE TIEMPO DE EJECICION DE LA FUNCION generar_laberinto_desde
 // Devuelve un numero, que es el tiempo total de ejecucion
 diferencia (resta) tiempo final - tiempo inicial
+
+ // <<===>> PSEUDOCODIGOS FUNCION BFS <<===>>
+ // -- > Funcion auxiliar reconstruir_camino <--
+ Se encarga de dibujar el camino de salida del mapa, la solucion. Una vez que la funcion BFS encuentra la salida, esta funcion retrocede (de la salida a la entrada), marcado el camino recorrido 
+ con el caracter X
+ FUNCION recostruir_camino(matriz_padres(filas, columnas), posicion_salida, matriz_laberinto)
+    // Comenzamos del final
+    posicion_actual = posicion_salida
+
+    // Retrocedemos hasta encontrar el inicio
+    La pista termina cuando llegamos a la celda que no tiene "padre" ENTRADA
+    Mientras que la psocion_actual NO sea posicion_entrada
+        
+        // Obtenemos la celda desde donde llegamos a la celda actual
+        posicion_anterior = matriz_padres[posicion_actual]
+        
+        // Marcamos el camino en el laberinto
+        // Solo marcamos si no es ENTRADA y SALIDA para no borrar el camino
+        SI matriz_laberinto[posicion_anterior] NO ES ENTRADA:
+            matriz_laberinto[posion_anterior] = RUTA (marcar con X)
+
+        // Movemos nuestro personaje hacia atras
+        posicion_actual = posicion anterior 
+    FIN (funcion auxiliar)
+    
+
+
+
+ 

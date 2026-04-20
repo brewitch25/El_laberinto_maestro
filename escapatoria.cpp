@@ -13,8 +13,10 @@ const char CAMINO = '.';
 const char RUTA = 'X';                          // Marca el camino resulto
 
 // Indice de todas las funciones a usar en main
-void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz);
-bool es_posicion_valida(int fila, int col, int alto, int ancho);
+//void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz);
+//bool es_posicion_valida(int fila, int col, int alto, int ancho);
+void reconstruir_camino(vector<vector<int>>& padre_fila, vector<vector<int>>& padre_col,
+                        int fila_salida, int col_salida, vector<vector<char>> matriz_laberinto);
 
 int main() 
 {    
@@ -33,12 +35,15 @@ int main()
 
     // Definimos la entrada(esquina superior derecha)
     matriz_laberinto[0][0] = ENTRADA;
-    
+
+    // Permite que el jugador pase de la entrada al resto del laberinto
+    matriz_laberinto[0][1] = CAMINO;
+
     // Registamos el tiempo antes de empezar - INICIO
     auto tiempo_inicial = chrono::steady_clock::now();
 
     // Definimos el inicio del algoritimo en la posicion (1,1)
-    generar_camino_desde(1, 1, alto, ancho, matriz_laberinto);
+    //generar_camino_desde(1, 1, alto, ancho, matriz_laberinto);
 
     // Registramos el tiempo al terminar la funcion - FINAL
     auto tiempo_final = chrono::steady_clock::now();
@@ -47,18 +52,18 @@ int main()
     chrono::duration<double> tiempo_de_ejecucion = tiempo_final - tiempo_inicial;
 
     // Permite que el jugador pase de la entrada al resto del laberinto
-    matriz_laberinto[0][1] = CAMINO;
-    matriz_laberinto[1][1] = CAMINO;
+    //matriz_laberinto[0][1] = CAMINO;
+    //matriz_laberinto[1][1] = CAMINO;
 
     // Definimos la salida, se crean los dos caminos para que la salida no se encuentren rodeadas
-    // paredes, hace que se pueda acceder a la salida
+    // de paredes, hace que se pueda acceder a la salida
     matriz_laberinto[alto - 1][ancho - 1] = SALIDA;
     matriz_laberinto[alto - 2][ancho - 1] = CAMINO;
-    matriz_laberinto[alto - 2][ancho - 2] = CAMINO;
+    //matriz_laberinto[alto - 2][ancho - 2] = CAMINO;
 
     // Visualizacion de la matriz generada
     cout <<"Laberinto Generado" << endl;
-    for (int i = 0; i < alto; ++i)      // 1er bucle, recorre cada fila
+    for (int i = 0; i < alto; ++i)      // 1er bucle, recorre cada 
     {
         for (int j = 0; j < ancho; ++j)
         { cout << matriz_laberinto[i][j] << " "; }
@@ -71,6 +76,7 @@ int main()
     return 0;
 }
 
+/*
  // << === >> FUNCIONES A USAR EN EL MAIN << === >> //
 
 void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz) 
@@ -117,5 +123,31 @@ bool es_posicion_valida(int fila, int col, int alto, int ancho)
 {
     return (fila >= 0 && fila < alto && col >= 0 && col < ancho);  
 }
+*/
+// << === >> Bloque BFS << === >>
+void reconstruir_camino(vector<vector<int>>& padre_fila, vector<vector<int>>& padre_col, int fila_salida,
+                        int col_salida, vector<vector<char>> matriz_laberinto)
+{
+    // Empezamos del final(Salida)
+    int f_actual = fila_salida;
+    int c_actual = col_salida;
 
+    // Retrocedemos mientras la fila del padre sea valida, diferente a -1
+    // Usamos -1 para saber que llegamos al inicio
+    while (padre_fila[f_actual][c_actual] != -1) 
+    {
+        // Guardamo temporalmente quien es el padre, antes de movernos
+        int f_anterior = padre_fila[f_actual][c_actual];
+        int c_anterior = padre_col[f_actual][c_actual];
 
+        // Nos movemos en la posicion del padre
+        f_actual = f_anterior;
+        c_actual = c_anterior;
+
+        // Marcamos con "X" = RUTA, en caso de no ser la Entrada
+        if(matriz_laberinto[f_actual][c_actual] != ENTRADA) 
+        {
+            matriz_laberinto[f_actual][c_actual] = RUTA;
+        }
+    }
+}

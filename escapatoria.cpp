@@ -152,16 +152,6 @@ bool es_posicion_valida(int fila, int col, int alto, int ancho)
 void reconstruir_camino(vector<vector<int>>& padre_fila, vector<vector<int>>& padre_col, int fila_salida,
                         int col_salida, vector<vector<char>>& matriz_laberinto)
 {
-    // cout << "PADRE FILA: "<< endl;
-    // for (int i = 0; i < padre_fila.size(); i++)
-    // {
-    //     for (int j = 0; j < padre_fila[i].size(); j++) 
-    //     {
-    //         cout << "(" << padre_fila[i][j] << "," << padre_col[i][j] << ")" << " ";
-    //     }
-    //     cout << endl;
-    // }
-
     // Empezamos del final(Salida)
     int f_actual = fila_salida;
     int c_actual = col_salida;
@@ -201,7 +191,7 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
     cola_f.push_back(0);
     cola_c.push_back(0);
     padre_fila[0][0] = -2;      // Marca para no volver a la entrada 
-    padre_col[0][0] = -2;      // Marca para no volver a la entrada 
+    padre_col[0][0] = -2;       // Marca para no volver a la entrada 
 
     // Direcciones: arriba, abajo, izquierda, derecha
     int cambio_fila[] = {-1, 1, 0, 0};
@@ -213,7 +203,6 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
         // Obtenemos el elemento a procesar, el "frente"
         int f_actual = cola_f[frente];
         int col_actual = cola_c[frente];
-        // cout << "Estamos en la celda (" << f_actual << "," << col_actual << ")" << endl;
         frente++;                               // Marcamos, sumamos moviendo el frente al siguiente
 
         // Encontramos la salida?

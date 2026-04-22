@@ -101,7 +101,6 @@ int main()
 
 
  // << === >> FUNCIONES A USAR EN EL MAIN << === >> //
-
  // BLOQUE DE GENERACION DE CAMINO DE SALIDA
 
 void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz) 
@@ -240,3 +239,6 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
 }
 
     // << === >> BLOQUE DE RESOLUCION USANDO DFS << === >>
+// Definimos las movimientos a utilizar con sus respectivas coordenadas
+int dFila[] = {-1, 1, 0, 0};
+int dColumna[] = {0, 0, -1, 1};

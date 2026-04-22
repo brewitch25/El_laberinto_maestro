@@ -242,6 +242,7 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
 // Definimos las movimientos a utilizar con sus respectivas coordenadas
 int dFila[] = {-1, 1, 0, 0};
 int dColumna[] = {0, 0, -1, 1};
+char visitado = 'v';
 
 // << === >> Funcion resolverDFS << === >>
 bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matriz_laberinto)
@@ -254,6 +255,11 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
         {
             return false;
         }
-    // Caso base nº2 -> 
-    
+    // Caso base nº2 -> Posicion visitada?
+    if (matriz_laberinto[fila_actual][columna_actual] == RUTA ||
+        matriz_laberinto[fila_actual][columna_actual] == visitado)
+        {
+            return false;
+        }
+        
 }

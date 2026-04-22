@@ -123,6 +123,9 @@ FUNCION resolverBFS(alto, ancho, matriz_laberinto)
     RETORNAR falso // No se encontró salida
 FIN FUNCION
 
+// << === >> PSEUDOCODIGO FUNCION resolverDFS << === >>
+El algoritmo de DFS(Depth Fisrt Search), comienza desde un vertice dado y explora un camino 
+hasta lo más profundo, cuando llega a un vértice sin vecinos que visitar, retrocede al vértice anterior para explorar otros caminos sin visitar. Esto continúa hasta que se visitan todos los vértices alcanzables desde el origen.
 
 
 

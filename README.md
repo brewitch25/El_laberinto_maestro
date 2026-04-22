@@ -136,11 +136,11 @@ dColumna [] = {0, 0, -1, 1}
 Funcion resolverDFS(fila_actual, columna_actual, matriz_laberinto)
     // Caso base nº 1
     // Estamos fuera de los limites del laberinto?
-    Si es_posicion_valida(fila_actual, columna_actual) == True Ó 
+    Si es_posicion_valida(fila_actual, columna_actual, alto, ancho) Ó 
         matriz_laberinto[fila_actual][columna_actual] == MURO
         retornar False      -> (Camino Bloqueado)
     // Caso base nº 2
-    // Ya visitamos sta posicion?
+    // Ya visitamos esta posicion?
     Si matriz_laberinto[fila_actual][columna] == RUTA Ó 
         matriz_laberinto[fila_actual][columna_actual] == 'visitado'
         retornar False

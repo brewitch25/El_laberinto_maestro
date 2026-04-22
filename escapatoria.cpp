@@ -242,3 +242,18 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
 // Definimos las movimientos a utilizar con sus respectivas coordenadas
 int dFila[] = {-1, 1, 0, 0};
 int dColumna[] = {0, 0, -1, 1};
+
+// << === >> Funcion resolverDFS << === >>
+bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matriz_laberinto)
+{
+    // Caso base nº1 -> Limites del laberinto. Estamos dentro del laberinto?
+    // matriz_laberinto.size() = alto
+    // matriz_laberinto[0].size() = ancho
+    if (!es_posicion_valida(fila_actual, columna_actual, matriz_laberinto.size(), matriz_laberinto[0].size()) ||
+        matriz_laberinto[fila_actual][columna_actual] == MURO)
+        {
+            return false;
+        }
+    // Caso base nº2 -> 
+    
+}

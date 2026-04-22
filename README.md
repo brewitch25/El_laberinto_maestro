@@ -127,6 +127,47 @@ FIN FUNCION
 El algoritmo de DFS(Depth Fisrt Search), comienza desde un vertice dado y explora un camino 
 hasta lo más profundo, cuando llega a un vértice sin vecinos que visitar, retrocede al vértice anterior para explorar otros caminos sin visitar. Esto continúa hasta que se visitan todos los vértices alcanzables desde el origen.
 
+//Antes de la funcion, definimos los movimientos posibles
+// Representa los 4 movimientos posibles
+// Arriba, abajo, izquierda, derecha 
+dFila [] = {-1, 1, 0, 0}
+dColumna [] = {0, 0, -1, 1}
+
+Funcion resolverDFS(fila_actual, columna_actual, matriz_laberinto)
+    // Caso base nº 1
+    // Estamos fuera de los limites del laberinto?
+    Si es_posicion_valida(fila_actual, columna_actual) == True Ó 
+        matriz_laberinto[fila_actual][columna_actual] == MURO
+        retornar False      -> (Camino Bloqueado)
+    // Caso base nº 2
+    // Ya visitamos sta posicion?
+    Si matriz_laberinto[fila_actual][columna] == RUTA Ó 
+        matriz_laberinto[fila_actual][columna_actual] == 'visitado'
+        retornar False
+    // Caso base nº 3
+    // Es la salida?
+    Si matriz_laberinto[fila_actual][columna_actual] == SALIDA
+        retornar True
+    // Marcamos el paso actual
+    Si matriz_laberinto[fila_actual][columna_actualmna] != ENTRADA
+        matriz_laberinto[fila_actual][columna_actual] == RUTA
+    
+    // Iteramos en las 4 posiciones posibles
+    Para i desde 0 hasta 3
+        variable nueva_fila = fila_actual + dFila[i]
+        variable nueva_columna = columna_actual + dColumna[i]
+
+        // Se usa la recursividad para la nueva posicion
+        Si resolverDFS(fila_actual, columna_actual, matriz_laberinto) == True
+            retornar True
+    Fin 
+    // Backtracking 
+    // Si el bucle termino y nadie retorno True, este camino no funciona
+    Si matriz_laberinto[fila_actual][columna_actual] != ENTRADA
+        matriz_laberinto[fila_actual][columna_actual] == CAMINO
+    Retornar Falso
+Fin de la funcion
+
 
 
 

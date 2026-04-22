@@ -102,6 +102,8 @@ int main()
 
  // << === >> FUNCIONES A USAR EN EL MAIN << === >> //
 
+ // BLOQUE DE GENERACION DE CAMINO DE SALIDA
+
 void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz) 
 {
     //Definimos las 4 direcciones(arriba, abajo, izquierda, derecha)
@@ -148,7 +150,7 @@ bool es_posicion_valida(int fila, int col, int alto, int ancho)
     return (fila >= 0 && fila < alto && col >= 0 && col < ancho);  
 }
 
-// << === >> Bloque BFS << === >>
+    // << === >> BLOQUE DE RESOLUCION USANDO BFS << === >>
 void reconstruir_camino(vector<vector<int>>& padre_fila, vector<vector<int>>& padre_col, int fila_salida,
                         int col_salida, vector<vector<char>>& matriz_laberinto)
 {
@@ -237,3 +239,4 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
     return false;       // Si no hay salida
 }
 
+    // << === >> BLOQUE DE RESOLUCION USANDO DFS << === >>

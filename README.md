@@ -158,7 +158,7 @@ Funcion resolverDFS(fila_actual, columna_actual, matriz_laberinto)
         variable nueva_columna = columna_actual + dColumna[i]
 
         // Se usa la recursividad para la nueva posicion
-        Si resolverDFS(fila_actual, columna_actual, matriz_laberinto) == True
+        Si resolverDFS(nueva_fila, nueva_columna, matriz_laberinto) == True
             retornar True
     Fin 
     // Backtracking 

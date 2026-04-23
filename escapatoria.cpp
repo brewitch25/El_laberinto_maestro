@@ -266,4 +266,10 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
     {
         return true;
     }
+    // Marcamos la ruta (donde ya pasamos)
+    if (matriz_laberinto[fila_actual][columna_actual] != ENTRADA) 
+        {
+        matriz_laberinto[fila_actual][columna_actual] = RUTA;
+        }
+    
 }

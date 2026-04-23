@@ -261,5 +261,9 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
         {
             return false;
         }
-        
+    // Caso base nº 3 -> Es la salida?
+    if (matriz_laberinto[fila_actual][columna_actual] == SALIDA)
+    {
+        return true;
+    }
 }

@@ -15,9 +15,10 @@ const char RUTA = 'X';                          // Marca el camino resulto
 //  <<==>> Indice de todas las funciones a usar en main <<==>>
 void generar_camino_desde(int fila, int col, int alto, int ancho, vector<vector<char>>& matriz);
 bool es_posicion_valida(int fila, int col, int alto, int ancho);
-void reconstruir_camino(vector<vector<int>>& padre_fila, vector<vector<int>>& padre_col,
-                        int fila_salida, int col_salida, vector<vector<char>>& matriz_laberinto);
-bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto);
+//void reconstruir_camino(vector<vector<int>>& padre_fila, vector<vector<int>>& padre_col,
+//                        int fila_salida, int col_salida, vector<vector<char>>& matriz_laberinto);
+//bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto);
+bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matriz_laberinto);
 
 int main() 
 {    
@@ -77,8 +78,8 @@ int main()
     
     
     // BLOQUE DE RESOLUCION DE LA FUNCION resolverBFS
-    cout << "Buscando escapatoria del laberinto.. Resolviendo BFS" << endl;
-    if (resolverBFS(alto, ancho, matriz_laberinto)) 
+    cout << "Buscando escapatoria del laberinto.. Resolviendo DFS" << endl;
+    if (resolverDFS(0, 0, matriz_laberinto)) 
     {
         cout<< "Ruta encontrada :)! La ruta se ha marcado con '"<< RUTA << endl;
     } else {
@@ -239,14 +240,10 @@ bool resolverBFS(int alto, int ancho, vector<vector<char>>& matriz_laberinto)
 }
 
     // << === >> BLOQUE DE RESOLUCION USANDO DFS << === >>
-// Definimos las movimientos a utilizar con sus respectivas coordenadas
-int dFila[] = {-1, 1, 0, 0};
-int dColumna[] = {0, 0, -1, 1};
-char visitado = 'v';
-
 // << === >> Funcion resolverDFS << === >>
 bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matriz_laberinto)
 {
+    char visitado = 'v';
     // Caso base nº1 -> Limites del laberinto. Estamos dentro del laberinto?
     // matriz_laberinto.size() = alto
     // matriz_laberinto[0].size() = ancho
@@ -272,6 +269,10 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
         {
         matriz_laberinto[fila_actual][columna_actual] = RUTA;
         }
+    // Definimos las movimientos a utilizar con sus respectivas coordenadas
+    int dFila[] = {-1, 1, 0, 0};
+    
+    int dColumna[] = {0, 0, -1, 1};
     // Iteramos en las posiciones posibles(arriba, abajo, izquierda, derecha) 
     for (int i = 0; i < 4; i++)
     {   // Mira la posible posicion usando los indices de las posiciones
@@ -285,10 +286,9 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
         }
     }
     // Backtracking -> Termina el blucle y no se retorna un true, no sirve el camino explorado
-    if (matriz_laberinto[fila_actual][columna_actual] != ENTRADA ||
-        matriz_laberinto[fila_actual][columna_actual] == CAMINO)
+    if (matriz_laberinto[fila_actual][columna_actual] != ENTRADA)
         {
-            return false;
+        matriz_laberinto[fila_actual][columna_actual] = CAMINO;
         }
-    
+    return false;
 }

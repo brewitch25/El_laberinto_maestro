@@ -284,6 +284,11 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
             return true;
         }
     }
-
+    // Backtracking -> Termina el blucle y no se retorna un true, no sirve el camino explorado
+    if (matriz_laberinto[fila_actual][columna_actual] != ENTRADA ||
+        matriz_laberinto[fila_actual][columna_actual] == CAMINO)
+        {
+            return false;
+        }
     
 }

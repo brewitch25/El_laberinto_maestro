@@ -148,7 +148,7 @@ Funcion resolverDFS(fila_actual, columna_actual, matriz_laberinto)
     // Es la salida?
     Si matriz_laberinto[fila_actual][columna_actual] == SALIDA
         retornar True
-    // Marcamos el paso actual
+    // Marcamos la ruta(por donde ya pasamos)
     Si matriz_laberinto[fila_actual][columna_actualmna] != ENTRADA
         matriz_laberinto[fila_actual][columna_actual] == RUTA
     

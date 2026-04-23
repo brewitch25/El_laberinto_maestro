@@ -266,10 +266,24 @@ bool resolverDFS(int fila_actual, int columna_actual, vector<vector<char>>& matr
     {
         return true;
     }
-    // Marcamos la ruta (donde ya pasamos)
+    // Marcamos la ruta (donde ya pasamos) 
+    // Si no es ENTRADA marcar como RUTA
     if (matriz_laberinto[fila_actual][columna_actual] != ENTRADA) 
         {
         matriz_laberinto[fila_actual][columna_actual] = RUTA;
         }
+    // Iteramos en las posiciones posibles(arriba, abajo, izquierda, derecha) 
+    for (int i = 0; i < 4; i++)
+    {   // Mira la posible posicion usando los indices de las posiciones
+        int nueva_fila = fila_actual + dFila[i];
+        int nueva_columna = columna_actual + dColumna[i];
+
+        // Usamos recursividad para la nueva posicion
+        if (resolverDFS(nueva_fila, nueva_columna, matriz_laberinto) == true)
+        {
+            return true;
+        }
+    }
+
     
 }
